@@ -26,7 +26,7 @@ public class Zadatak1 {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.get("https://demoqa.com/automation-practice-form");
-//        driver.manage().window().maximize();
+
 
         Thread.sleep(2000);
 
@@ -93,6 +93,13 @@ public class Zadatak1 {
         driver.findElement(By.cssSelector(".css-26l3qy-menu>div>div:first-child")).click();
         Thread.sleep(2000);
         driver.findElement(By.id("submit")).click();
+
+        for (int i = 0; i < 3; i++) {
+            robot.keyPress(KeyEvent.VK_CONTROL);
+            robot.keyPress(KeyEvent.VK_ADD);
+            robot.keyRelease(KeyEvent.VK_ADD);
+            robot.keyRelease(KeyEvent.VK_CONTROL);
+        }
 
 
 
