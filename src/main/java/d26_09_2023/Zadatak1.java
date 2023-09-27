@@ -7,6 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.Scanner;
 
 public class Zadatak1 {
@@ -19,11 +22,21 @@ public class Zadatak1 {
         ●	Klik na submit
 
      */
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, AWTException {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.get("https://demoqa.com/automation-practice-form");
+//        driver.manage().window().maximize();
 
+        Thread.sleep(2000);
+
+        Robot robot = new Robot();
+        for (int i = 0; i < 3; i++) {
+            robot.keyPress(KeyEvent.VK_CONTROL);
+            robot.keyPress(KeyEvent.VK_SUBTRACT);
+            robot.keyRelease(KeyEvent.VK_SUBTRACT);
+            robot.keyRelease(KeyEvent.VK_CONTROL);
+        }
 
         Scanner s = new Scanner(System.in);
         System.out.print("Enter first name: ");
@@ -37,14 +50,14 @@ public class Zadatak1 {
         System.out.print("Choose sex: ");
         String pol = s.next();
         driver.findElement(By.xpath("//label[text()='"+pol.substring(0, 1).toUpperCase() + pol.substring(1).toLowerCase()+"']")).click();
-        System.out.print("Enter phone number: ");
+        System.out.print("Enter phone number (10 digits): ");
         driver.findElement(By.id("userNumber")).sendKeys(s.next());
 
         WebElement dateInput = driver.findElement(By.id("dateOfBirthInput"));
         String inputValue = dateInput.getAttribute("value");
-          System.out.print("Month of birth: ");
+          System.out.print("Month of birth (1-12): ");
           String month = s.next();
-          System.out.print("Day of birth (number): ");
+          System.out.print("Day of birth (1-31): ");
           String day = s.next();
           System.out.print("Year of birth: ");
           String year = s.next();
@@ -74,6 +87,12 @@ public class Zadatak1 {
         System.out.println("Enter current address");
         String address = s.next();
         driver.findElement(By.id("currentAddress")).sendKeys(address);
+        driver.findElement(By.cssSelector("#state .css-1wy0on6")).click();
+        driver.findElement(By.cssSelector(".css-26l3qy-menu>div>div:first-child")).click();
+        driver.findElement(By.cssSelector("#city .css-1wy0on6")).click();
+        driver.findElement(By.cssSelector(".css-26l3qy-menu>div>div:first-child")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.id("submit")).click();
 
 
 
