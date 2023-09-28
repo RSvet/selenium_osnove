@@ -18,7 +18,7 @@ public class Zadatak3 {
         WebDriver driver = new ChromeDriver();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        driver.get("file:///C:/Users/Svetlana/Desktop/Zadatak4.html");
+        driver.get("file:///C:/Users/Svetlana/Desktop/bootcamp/projekti-rad%20na%20casu/Zadatak4.html");
         driver.findElement(By.id("showInBtn")).click();
 
         wait
