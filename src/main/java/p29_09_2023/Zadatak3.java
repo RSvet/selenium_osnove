@@ -12,6 +12,7 @@ import java.sql.SQLOutput;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Zadatak3 {
     public static void main(String[] args) throws InterruptedException {
@@ -59,8 +60,12 @@ Ceka da polje za pretragu postane nevidljivo. (Postaviti odgovarajuce poruke u s
         String text = "mi";
         inputSearch.sendKeys(text);
 
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#task-table .filterTable_no_results td")));
-        System.out.println("Text '"+text+"' is entered in the filter search field. No results found message is not present.");
+        try{
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#task-table .filterTable_no_results td")));
+            driver.findElement(By.cssSelector("#task-table .filterTable_no_results td"));
+        }catch (Exception e){
+            System.out.println("Text '"+text+"' is entered in the filter search field. No results found row does not exist.");
+        }
 
         for (int i = 0; i < tableRows.size(); i++) {
             boolean check=false;
@@ -74,7 +79,7 @@ Ceka da polje za pretragu postane nevidljivo. (Postaviti odgovarajuce poruke u s
                     wait
                             .withMessage("Error - Row no." + (i + 1) + "contains results but is not in search result")
                             .until(ExpectedConditions.visibilityOf(tableRows.get(i)));
-                    System.out.println("Row no. " + (i + 1) + " contains results.");
+                    System.out.println("Row no " + (i + 1) + " contains results.");
                 }
         }
         Thread.sleep(2000);
