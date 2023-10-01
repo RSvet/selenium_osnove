@@ -38,7 +38,7 @@ Ceka da polje za pretragu postane nevidljivo. (Postaviti odgovarajuce poruke u s
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         driver.get("https://s.bootsnipp.com/iframe/8dqr");
 
@@ -61,8 +61,7 @@ Ceka da polje za pretragu postane nevidljivo. (Postaviti odgovarajuce poruke u s
         inputSearch.sendKeys(text);
 
         try{
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#task-table .filterTable_no_results td")));
-            driver.findElement(By.cssSelector("#task-table .filterTable_no_results td"));
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#task-table .filterTable_no_results td")));
         }catch (Exception e){
             System.out.println("Text '"+text+"' is entered in the filter search field. No results found row does not exist.");
         }
