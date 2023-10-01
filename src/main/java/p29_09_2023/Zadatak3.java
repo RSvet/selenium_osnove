@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.sql.SQLOutput;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,13 +51,16 @@ Ceka da polje za pretragu postane nevidljivo. (Postaviti odgovarajuce poruke u s
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#task-table .filterTable_no_results td")));
         if (driver.findElement(By.cssSelector("#task-table .filterTable_no_results td")).getText().equals("No results found"))
-            System.out.println("No results found");
+            System.out.println("No results found message is present.");
 
         Thread.sleep(2000);
 
         inputSearch.clear();
         String text = "mi";
         inputSearch.sendKeys(text);
+
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#task-table .filterTable_no_results td")));
+        System.out.println("Text '"+text+"' is entered in the filter search field. No results found message is not present.");
 
         for (int i = 0; i < tableRows.size(); i++) {
             boolean check=false;
@@ -68,18 +72,17 @@ Ceka da polje za pretragu postane nevidljivo. (Postaviti odgovarajuce poruke u s
             }
             if(check){
                     wait
-                            .withMessage("Error - Row no." + (i + 1) + "containts results but is not in search result")
+                            .withMessage("Error - Row no." + (i + 1) + "contains results but is not in search result")
                             .until(ExpectedConditions.visibilityOf(tableRows.get(i)));
-                    System.out.println("Row no. " + (i + 1) + " containes results");
+                    System.out.println("Row no. " + (i + 1) + " contains results.");
                 }
-
         }
-       Thread.sleep(2000);
+        Thread.sleep(2000);
         driver.findElement(By.cssSelector(".col-md-6:nth-child(2) .pull-right")).click();
         wait
-                .withMessage("Filter tasks input is still visible")
+                .withMessage("Filter tasks input is still visible.")
                 .until(ExpectedConditions.invisibilityOf(inputSearch));
-        System.out.println("Input search field is not visible anymore");
+        System.out.println("Input search field is not visible anymore.");
 
     }
 }
