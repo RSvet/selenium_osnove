@@ -37,7 +37,7 @@ Koristite da broj elemenata bude 0
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector("tbody.files>tr.template-upload"),1));
-        driver.findElement(By.cssSelector("button[type='submit']")).click();
+        driver.findElement(By.cssSelector(".template-upload button.start")).click();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button[data-type='DELETE']"))).click();
         wait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector("tbody.files>tr.template-download"),0));
         System.out.println("File deleted");
