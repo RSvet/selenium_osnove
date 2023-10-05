@@ -1,0 +1,11 @@
+<suite name="Smoke Suite" verbose="1">
+    <test name="Login Tests">
+        <classes>
+            <class name="p05_10_2023.SwagLabsTests">
+                <methods>
+                    <include name="verifyErrorIsDisplayedWhenUsernameIsMissing"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
