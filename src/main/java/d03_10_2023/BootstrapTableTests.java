@@ -121,20 +121,24 @@ public class BootstrapTableTests {
 
     @Test
     public void deleteRow(){
-       int numOfRows = driver.findElements(By.cssSelector(".table>tbody>tr")).size();
 
-        driver.findElement(By.cssSelector("#d1 .delete")).click();
+         int cellsPerRow = driver.findElements(By.cssSelector(".table>tbody>tr:first-child>td")).size();
+         int cellsPerTable = driver.findElements(By.cssSelector(".table>tbody>tr>td")).size();
+
+         driver.findElement(By.cssSelector("#d1 .delete")).click();
+
+
         wait
                 .withMessage("Edit modal is not visible")
-                .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#delete  .modal-dialog")));
+                .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#delete .modal-dialog")));
         driver.findElement(By.id("del")).click();
 
         wait
                 .withMessage("Delete modal is still visible")
-                .until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#delete  .modal-dialog")));
-        wait
-                .withMessage("Row is not deleted")
-                .until(ExpectedConditions.numberOfElementsToBe(By.cssSelector(".table>tbody>tr"), numOfRows-1));
+                .until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#delete .modal-dialog")));
+
+        Assert.assertEquals(driver.findElements(By.cssSelector(".table>tbody>tr>td")).size(),
+                   cellsPerTable-cellsPerRow, "Row is still visible after deletion");
     }
 
     @Test
