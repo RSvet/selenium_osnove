@@ -170,8 +170,7 @@ public class SwagLabsTests extends BasicTest{
         loginPage.fillPassword(password);
         loginPage.clickOnLoginButton();
         topNavPage.clickOnCartButton();
-
-        Assert.assertTrue(topNavPage.doesHamburgerMenuButtonExists(), "Hamburger menu button does not exist");
+        topNavPage.waitForHamburgerButton();
 
     }
 
@@ -183,7 +182,7 @@ public class SwagLabsTests extends BasicTest{
         loginPage.fillPassword(password);
         loginPage.clickOnLoginButton();
         topNavPage.clickOnCartButton();
-        Assert.assertTrue(topNavPage.doesCartIconExists(), "Cart icon does not exist");
+        topNavPage.waitForCartIcon();
     }
 
 
@@ -364,6 +363,27 @@ public class SwagLabsTests extends BasicTest{
         Assert.assertTrue(
                 loginPage.doesUsernameInputExist(),
                 "Should be redirected to login page after logout.");
+
+    }
+
+    @Test(priority = 23, retryAnalyzer = SwagLabsRetry.class)
+    public void verifyResetAppStateMenuOptionIsWorking(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.clickOnLoginButton();
+        inventoryPage.clickToAddItemToCart();
+        boolean badgeExists = topNavPage.checkIfCartBadgeExists();
+
+        topNavPage.clickOnCartButton();
+        topNavPage.clickOnHamburger();
+        leftNavPage.waitLeftNavMenu();
+        leftNavPage.clickResetAppState();
+
+        boolean badgeExistsAfterReset = topNavPage.checkIfCartBadgeExists();
+
+        Assert.assertEquals(badgeExistsAfterReset, !badgeExists, "Reset option is not resetting the app");
 
     }
 

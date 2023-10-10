@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TopNavPage extends BasicPage {
@@ -14,8 +15,18 @@ public class TopNavPage extends BasicPage {
         return driver.findElement(By.id("react-burger-menu-btn"));
     }
 
+    public void waitForHamburgerButton(){
+        wait.withMessage("Hamburger button is not presented")
+                .until(ExpectedConditions.visibilityOf(getHamburgerButton()));
+    }
+
     public WebElement getCartButton(){
         return driver.findElement(By.className("shopping_cart_link"));
+    }
+
+    public void waitForCartIcon(){
+        wait.withMessage("Cart icon is not presented")
+                .until(ExpectedConditions.visibilityOf(getCartButton()));
     }
 
     public WebElement getHeaderTitle(){return driver.findElement(By.className("app_logo"));}
@@ -28,14 +39,6 @@ public class TopNavPage extends BasicPage {
 
     public void clickOnCartButton(){
         getCartButton().click();
-    }
-
-    public boolean doesHamburgerMenuButtonExists(){
-        return elementExists(By.id("react-burger-menu-btn"));
-    }
-
-    public boolean doesCartIconExists(){
-        return elementExists(By.className("shopping_cart_link"));
     }
 
     public boolean hamburgerButtonIsEnabled(){

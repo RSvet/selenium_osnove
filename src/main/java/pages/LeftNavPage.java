@@ -32,6 +32,8 @@ public class LeftNavPage extends BasicPage {
 
     public WebElement getAbout(){return driver.findElement(By.linkText("About"));}
 
+    public WebElement getResetAppState(){return driver.findElement(By.linkText("Reset App State"));}
+
     public void clickLogoutButton(){
         getLogoutLink().click();
     }
@@ -39,6 +41,8 @@ public class LeftNavPage extends BasicPage {
     public void clickAllItems(){getAllItems().click();}
 
     public void clickAbout(){getAbout().click();}
+
+    public void clickResetAppState(){getResetAppState().click();}
 
     public List<WebElement> getMenuOptions(){
         return driver.findElements(By.cssSelector(".bm-item-list>a"));
@@ -56,6 +60,8 @@ public class LeftNavPage extends BasicPage {
     public int getNumberOfMenuOptions(){
         return getMenuOptions().size();
     }
+
+
 
 
 
