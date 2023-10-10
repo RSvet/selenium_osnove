@@ -42,4 +42,8 @@ public class TopNavPage extends BasicPage {
         return getHamburgerButton().isEnabled();
     }
 
+    public boolean cartIconIsEnabled(){
+        return getCartButton().isEnabled();
+    }
+
 }
