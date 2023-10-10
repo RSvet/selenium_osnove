@@ -30,6 +30,10 @@ public class FooterPage extends BasicPage{
         return driver.findElement(By.cssSelector(".social_linkedin>a"));
     }
 
+    public void clickOnTwitterIcon(){
+        getTwitter().click();
+    }
+
     public void scrollToFooter(){
         new Actions(driver).scrollToElement(getFooter()).perform();
     }
