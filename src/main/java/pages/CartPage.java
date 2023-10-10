@@ -3,6 +3,8 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
@@ -17,9 +19,18 @@ public class CartPage extends BasicPage{
         return elementExists(By.className("cart_item"));
     }
 
-    public String getNameFromAddedItem(){
-        return  driver.findElement(By.className("inventory_item_name")).getText();
+    public WebElement getItemTitleElement(){
+        return driver.findElement(By.className("inventory_item_name"));
     }
 
+    public String getTextFromAddedItemName(){
+        return  getItemTitleElement().getText();
+    }
+
+    public void waitForItemTitle(){
+        wait
+                .withMessage("Item title is not visible in the cart")
+                .until(ExpectedConditions.visibilityOf(getItemTitleElement()));
+    }
 
 }
