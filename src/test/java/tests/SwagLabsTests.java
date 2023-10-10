@@ -481,7 +481,7 @@ public class SwagLabsTests extends BasicTest{
         cartPage.waitForItemQuantity();
     }
 
-    @Test(priority = 30, retryAnalyzer = SwagLabsRetry.class)
+    @Test(priority = 31, retryAnalyzer = SwagLabsRetry.class)
     public void verifyIfTitleOfAddedItemIsClickable(){
         String username = "standard_user";
         String password = "secret_sauce";
@@ -492,6 +492,21 @@ public class SwagLabsTests extends BasicTest{
         topNavPage.clickOnCartButton();
         Assert.assertTrue(cartPage.checkIfAddedItemsExist(), "There are no items in the cart");
         cartPage.waitForItemTitleToBeClickable();
+    }
+
+    @Test(priority = 32, retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfTitleOfAddedItemIsWorking(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.clickOnLoginButton();
+        inventoryPage.clickToAddItemToCart();
+        topNavPage.clickOnCartButton();
+        Assert.assertTrue(cartPage.checkIfAddedItemsExist(), "There are no items in the cart");
+        cartPage.waitForItemTitleToBeClickable();
+
+        Assert.assertTrue(driver.getCurrentUrl().contains("inventory-item.html"),"User is not on the item page");
     }
 
 

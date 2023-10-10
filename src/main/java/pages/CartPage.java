@@ -46,7 +46,7 @@ public class CartPage extends BasicPage{
     public void waitForItemTitleToBeClickable(){
         wait
                 .withMessage("Item title is not clickable in the cart")
-                .until(ExpectedConditions.elementToBeClickable(getItemTitleElement()));
+                .until(ExpectedConditions.elementToBeClickable(getItemTitleElement())).click();
     }
 
     public void waitForItemDescription(){
