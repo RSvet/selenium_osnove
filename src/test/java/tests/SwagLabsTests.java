@@ -412,7 +412,21 @@ public class SwagLabsTests extends BasicTest{
         leftNavPage.waitXButton();
         leftNavPage.clickXButton();
         leftNavPage.waitLeftNavMenuDissapear();
+    }
 
+    @Test(priority = 26, retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfAddedItemIsPresentOnTheCartPage(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.clickOnLoginButton();
+        inventoryPage.clickToAddItemToCart();
+        topNavPage.clickOnCartButton();
+        Assert.assertTrue(cartPage.checkIfAddedItemsExist(), "There are no items in the cart");
+        String nameOfAddedItem = "Sauce Labs Backpack";
+        Assert.assertEquals(cartPage.getNameFromAddedItem(), nameOfAddedItem,
+                "Item added is not the same as item in the cart");
     }
 
 
