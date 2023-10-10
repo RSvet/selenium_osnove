@@ -14,7 +14,17 @@ public class TopNavPage extends BasicPage {
         return driver.findElement(By.id("react-burger-menu-btn"));
     }
 
+    public WebElement getCartButton(){
+        return driver.findElement(By.className("shopping_cart_link"));
+    }
+
     public void clickOnHamburger(){
         getHamburgerButton().click();
     }
+
+
+    public void clickOnCartButton(){
+        getCartButton().click();
+    }
+
 }

@@ -1,5 +1,6 @@
 package tests;
 
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import p05_10_2023.SwagLabsRetry;
@@ -109,6 +110,29 @@ public class SwagLabsTests extends BasicTest{
 
 
     }
+
+    // DOMACI - TESTOVI ZA CART PAGE
+
+   @Test(priority = 7, retryAnalyzer = SwagLabsRetry.class)
+    public void verifyUrlOfCartPage(){
+       String username = "standard_user";
+       String password = "secret_sauce";
+       loginPage.fillUsername(username);
+       loginPage.fillPassword(password);
+       loginPage.clickOnLoginButton();
+
+       topNavPage.clickOnCartButton();
+
+       Assert.assertEquals(
+               driver.getCurrentUrl(),
+               baseUrl2 + "cart.html",
+               "User should be on the cart page!");
+   }
+
+
+
+
+
 
 
 
