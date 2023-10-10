@@ -129,6 +129,21 @@ public class SwagLabsTests extends BasicTest{
                "User should be on the cart page!");
    }
 
+    @Test(priority = 8, retryAnalyzer = SwagLabsRetry.class)
+    public void verifyPageTitleOfCartPage(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.clickOnLoginButton();
+        inventoryPage.clickToAddItemToCart();
+        topNavPage.clickOnCartButton();
+        Assert.assertEquals(
+                driver.getTitle(),
+                "Swag Labs",
+                "Page title should be Swag Labs");
+    }
+
 
 
 
