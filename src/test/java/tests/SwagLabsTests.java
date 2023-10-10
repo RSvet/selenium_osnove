@@ -535,7 +535,7 @@ public class SwagLabsTests extends BasicTest{
         Assert.assertFalse(cartPage.checkIfAddedItemsExist(), "Added item is not removed");
     }
     @Test(priority = 35, retryAnalyzer = SwagLabsRetry.class)
-    public void verifyIfContinueShoppintButtonIsPresentedInTheCart(){
+    public void verifyIfContinueShoppingButtonIsPresentedInTheCart(){
         String username = "standard_user";
         String password = "secret_sauce";
         loginPage.fillUsername(username);
@@ -545,6 +545,23 @@ public class SwagLabsTests extends BasicTest{
         topNavPage.clickOnCartButton();
 
         cartPage.waitForContinueShoppingButtonToBeVisible();
+
+    }
+
+    @Test(priority = 36, retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfContinueShoppingButtonIsWorkingInTheCart(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.clickOnLoginButton();
+        inventoryPage.clickToAddItemToCart();
+        topNavPage.clickOnCartButton();
+
+        cartPage.waitForContinueShoppingButtonToBeVisible();
+        cartPage.clickContinueShoppingButton();
+
+        Assert.assertEquals(driver.getCurrentUrl(), baseUrl2+"inventory.html");
 
     }
 

@@ -39,15 +39,19 @@ public class CartPage extends BasicPage{
     }
 
     public WebElement getRemoveButton(){
+        return driver.findElement(By.xpath("//button[text()='Remove']"));
+    }
+    public WebElement getContinueShoppingButton(){
         return driver.findElement(By.id("continue-shopping"));
     }
 
-    public WebElement getContinueShoppingButton(){
-        return driver.findElement(By.className("inventory_item_name"));
-    }
 
     public void clickOnRemoveButton(){
         getRemoveButton().click();
+    }
+
+    public void clickContinueShoppingButton(){
+        getContinueShoppingButton().click();
     }
 
     public void waitForItemTitle(){
