@@ -509,6 +509,17 @@ public class SwagLabsTests extends BasicTest{
         Assert.assertTrue(driver.getCurrentUrl().contains("inventory-item.html"),"User is not on the item page");
     }
 
+    @Test(priority = 33, retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfRemoveButtonIsVisibleInTheCart(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.clickOnLoginButton();
+        inventoryPage.clickToAddItemToCart();
+        topNavPage.clickOnCartButton();
+        cartPage.waitForRemoveButtonToBeVisible();
+    }
 
 
 
