@@ -20,6 +20,12 @@ public class LeftNavPage extends BasicPage {
                 .withMessage("Left menu did not appear")
                 .until(ExpectedConditions.visibilityOfElementLocated(By.className("bm-item-list")));
     }
+
+    public void waitLeftNavMenuDissapear(){
+        wait
+                .withMessage("Left menu did not dissappear")
+                .until(ExpectedConditions.invisibilityOfElementLocated(By.className("bm-item-list")));
+    }
     public void waitXButton(){
         wait
                 .withMessage("X button is not present")
@@ -48,6 +54,8 @@ public class LeftNavPage extends BasicPage {
     public void clickAbout(){getAbout().click();}
 
     public void clickResetAppState(){getResetAppState().click();}
+
+    public void clickXButton(){getXButton().click();}
 
     public List<WebElement> getMenuOptions(){
         return driver.findElements(By.cssSelector(".bm-item-list>a"));
