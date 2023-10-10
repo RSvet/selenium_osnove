@@ -63,4 +63,11 @@ public class TopNavPage extends BasicPage {
         else return 0;
     }
 
+    public WebElement getSubheaderTitle(){
+        return driver.findElement(By.cssSelector(".header_secondary_container>.title"));
+    }
+    public String getTextFromSubheaderTitle(){
+        return getSubheaderTitle().getText();
+    }
+
 }

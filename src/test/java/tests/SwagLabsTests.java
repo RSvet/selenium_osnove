@@ -249,8 +249,19 @@ public class SwagLabsTests extends BasicTest{
         int numberOfItemsAfter = topNavPage.getNumberOfItemsFromCartBadge();
 
         Assert.assertEquals(numberOfItemsAfter, numberOfItemsBefore+1, "Number of items in the cart did not increase");
+    }
 
+    @Test(priority = 16, retryAnalyzer = SwagLabsRetry.class)
+    public void verifySubHeaderTitleOnCartPage(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.clickOnLoginButton();
+        topNavPage.clickOnCartButton();
 
+        Assert.assertEquals(topNavPage.getTextFromSubheaderTitle(), "Your Cart",
+                "Subheader title should be Your Cart");
     }
 
 
