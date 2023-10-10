@@ -191,6 +191,7 @@ public class SwagLabsTests extends BasicTest{
         loginPage.fillPassword(password);
         loginPage.clickOnLoginButton();
         topNavPage.clickOnCartButton();
+        topNavPage.clickOnHamburger();
         Assert.assertTrue(topNavPage.hamburgerButtonIsEnabled(), "Hamburger button is not enabled");
     }
 
