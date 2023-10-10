@@ -468,6 +468,19 @@ public class SwagLabsTests extends BasicTest{
         cartPage.waitForItemPrice();
     }
 
+    @Test(priority = 30, retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfAddedItemQuantityIsPresented(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.clickOnLoginButton();
+        inventoryPage.clickToAddItemToCart();
+        topNavPage.clickOnCartButton();
+        Assert.assertTrue(cartPage.checkIfAddedItemsExist(), "There are no items in the cart");
+        cartPage.waitForItemQuantity();
+    }
+
 
 
 
