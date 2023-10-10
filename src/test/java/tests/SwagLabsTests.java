@@ -206,6 +206,18 @@ public class SwagLabsTests extends BasicTest{
         Assert.assertTrue(topNavPage.cartIconIsEnabled(), "Cart icon is not enabled");
     }
 
+    @Test(priority = 14, retryAnalyzer = SwagLabsRetry.class)
+    public void verifyHamburgerButtonIsWorkingOnCartPage(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.clickOnLoginButton();
+        topNavPage.clickOnCartButton();
+        topNavPage.clickOnHamburger();
+        leftNavPage.waitLeftNavMenu();
+    }
+
 
 
 
