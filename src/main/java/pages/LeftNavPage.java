@@ -30,11 +30,15 @@ public class LeftNavPage extends BasicPage {
 
     public WebElement getAllItems(){return driver.findElement(By.linkText("All Items"));}
 
+    public WebElement getAbout(){return driver.findElement(By.linkText("About"));}
+
     public void clickLogoutButton(){
         getLogoutLink().click();
     }
 
     public void clickAllItems(){getAllItems().click();}
+
+    public void clickAbout(){getAbout().click();}
 
     public List<WebElement> getMenuOptions(){
         return driver.findElements(By.cssSelector(".bm-item-list>a"));
