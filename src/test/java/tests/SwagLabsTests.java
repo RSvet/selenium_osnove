@@ -264,6 +264,24 @@ public class SwagLabsTests extends BasicTest{
                 "Subheader title should be Your Cart");
     }
 
+    @Test(priority = 16, retryAnalyzer = SwagLabsRetry.class)
+    public void verifyNumberOfMenuOptionInLeftNavigationMenu(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.clickOnLoginButton();
+        topNavPage.clickOnCartButton();
+        topNavPage.clickOnHamburger();
+
+        leftNavPage.waitLeftNavMenu();
+
+        Assert.assertEquals(leftNavPage.getNumberOfMenuOptions(), 4,
+                "There should be four menu options in left navigation");
+
+
+    }
+
 
 
 
