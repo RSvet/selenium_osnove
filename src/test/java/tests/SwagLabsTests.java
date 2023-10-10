@@ -565,6 +565,22 @@ public class SwagLabsTests extends BasicTest{
 
     }
 
+    @Test(priority = 37, retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfCheckoutButtonIsVisibleInTheCart(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.clickOnLoginButton();
+        inventoryPage.clickToAddItemToCart();
+        topNavPage.clickOnCartButton();
+
+        cartPage.waitForCheckoutButtonToBeVisible();
+
+
+    }
+
+
 
 
 

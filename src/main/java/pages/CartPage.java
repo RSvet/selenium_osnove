@@ -45,6 +45,10 @@ public class CartPage extends BasicPage{
         return driver.findElement(By.id("continue-shopping"));
     }
 
+    public WebElement getCheckoutButton(){
+        return driver.findElement(By.id("checkout"));
+    }
+
 
     public void clickOnRemoveButton(){
         getRemoveButton().click();
@@ -95,6 +99,12 @@ public class CartPage extends BasicPage{
         wait
                 .withMessage("Continue shopping button is not visible in the cart")
                 .until(ExpectedConditions.visibilityOf(getContinueShoppingButton()));
+    }
+
+    public void waitForCheckoutButtonToBeVisible(){
+        wait
+                .withMessage("Checkout button is not visible in the cart")
+                .until(ExpectedConditions.visibilityOf(getCheckoutButton()));
     }
 
 
