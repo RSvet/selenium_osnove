@@ -42,6 +42,10 @@ public class CartPage extends BasicPage{
         return driver.findElement(By.xpath("//button[text()='Remove']"));
     }
 
+    public void clickOnRemoveButton(){
+        getRemoveButton().click();
+    }
+
     public void waitForItemTitle(){
         wait
                 .withMessage("Item title is not visible in the cart")
@@ -77,6 +81,7 @@ public class CartPage extends BasicPage{
                 .withMessage("Remove button is not visible in the cart")
                 .until(ExpectedConditions.visibilityOf(getRemoveButton()));
     }
+
 
 
 }
