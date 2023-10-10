@@ -171,6 +171,18 @@ public class SwagLabsTests extends BasicTest{
 
     }
 
+    @Test(priority = 11, retryAnalyzer = SwagLabsRetry.class)
+    public void verifyCartIconIsPresentOnCartPage(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.clickOnLoginButton();
+        topNavPage.clickOnCartButton();
+        Assert.assertTrue(topNavPage.doesCartIconExists(), "Cart icon does not exist");
+    }
+
+
 
 
 
