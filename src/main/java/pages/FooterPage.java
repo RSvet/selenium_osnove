@@ -64,4 +64,12 @@ public class FooterPage extends BasicPage{
                 .until(ExpectedConditions.visibilityOf(getLinkedin()));
     }
 
+    public WebElement getCopyrightMessage(){
+        return driver.findElement(By.className("footer_copy"));
+    }
+
+    public String getTextFromCopyrightElement(){
+        return getCopyrightMessage().getText();
+    }
+
 }
