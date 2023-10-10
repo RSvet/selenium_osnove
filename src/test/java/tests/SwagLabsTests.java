@@ -347,6 +347,26 @@ public class SwagLabsTests extends BasicTest{
 
     }
 
+    @Test(priority = 22, retryAnalyzer = SwagLabsRetry.class)
+    public void verifyLogoutMenuOptionIsWorking(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.clickOnLoginButton();
+        topNavPage.clickOnCartButton();
+        topNavPage.clickOnHamburger();
+
+        leftNavPage.waitLeftNavMenu();
+
+        leftNavPage.clickLogoutButton();
+
+        Assert.assertTrue(
+                loginPage.doesUsernameInputExist(),
+                "Should be redirected to login page after logout.");
+
+    }
+
 
 
 
