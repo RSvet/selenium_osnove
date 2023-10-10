@@ -534,6 +534,19 @@ public class SwagLabsTests extends BasicTest{
 
         Assert.assertFalse(cartPage.checkIfAddedItemsExist(), "Added item is not removed");
     }
+    @Test(priority = 35, retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfContinueShoppintButtonIsPresentedInTheCart(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.clickOnLoginButton();
+        inventoryPage.clickToAddItemToCart();
+        topNavPage.clickOnCartButton();
+
+        cartPage.waitForContinueShoppingButtonToBeVisible();
+
+    }
 
 
 

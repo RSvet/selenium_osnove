@@ -39,7 +39,11 @@ public class CartPage extends BasicPage{
     }
 
     public WebElement getRemoveButton(){
-        return driver.findElement(By.xpath("//button[text()='Remove']"));
+        return driver.findElement(By.id("continue-shopping"));
+    }
+
+    public WebElement getContinueShoppingButton(){
+        return driver.findElement(By.className("inventory_item_name"));
     }
 
     public void clickOnRemoveButton(){
@@ -80,6 +84,13 @@ public class CartPage extends BasicPage{
         wait
                 .withMessage("Remove button is not visible in the cart")
                 .until(ExpectedConditions.visibilityOf(getRemoveButton()));
+    }
+
+
+    public void waitForContinueShoppingButtonToBeVisible(){
+        wait
+                .withMessage("Continue shopping button is not visible in the cart")
+                .until(ExpectedConditions.visibilityOf(getContinueShoppingButton()));
     }
 
 
