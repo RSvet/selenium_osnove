@@ -58,6 +58,10 @@ public class CartPage extends BasicPage{
         getContinueShoppingButton().click();
     }
 
+    public void clickCheckoutButton(){
+        getCheckoutButton().click();
+    }
+
     public void waitForItemTitle(){
         wait
                 .withMessage("Item title is not visible in the cart")
