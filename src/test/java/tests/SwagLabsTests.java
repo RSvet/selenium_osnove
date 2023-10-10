@@ -5,6 +5,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import p05_10_2023.SwagLabsRetry;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 
 public class SwagLabsTests extends BasicTest{
 
@@ -233,7 +237,7 @@ public class SwagLabsTests extends BasicTest{
                 "Should be redirected to cart page after login.");
     }
 
-    @Test(priority = 15, retryAnalyzer = SwagLabsRetry.class)
+    @Test(priority = 16, retryAnalyzer = SwagLabsRetry.class)
     public void verifyNumberOfAddedItemsToCart(){
         String username = "standard_user";
         String password = "secret_sauce";
@@ -251,7 +255,7 @@ public class SwagLabsTests extends BasicTest{
         Assert.assertEquals(numberOfItemsAfter, numberOfItemsBefore+1, "Number of items in the cart did not increase");
     }
 
-    @Test(priority = 16, retryAnalyzer = SwagLabsRetry.class)
+    @Test(priority = 17, retryAnalyzer = SwagLabsRetry.class)
     public void verifySubHeaderTitleOnCartPage(){
         String username = "standard_user";
         String password = "secret_sauce";
@@ -264,7 +268,7 @@ public class SwagLabsTests extends BasicTest{
                 "Subheader title should be Your Cart");
     }
 
-    @Test(priority = 16, retryAnalyzer = SwagLabsRetry.class)
+    @Test(priority = 18, retryAnalyzer = SwagLabsRetry.class)
     public void verifyNumberOfMenuOptionInLeftNavigationMenu(){
         String username = "standard_user";
         String password = "secret_sauce";
@@ -279,8 +283,30 @@ public class SwagLabsTests extends BasicTest{
         Assert.assertEquals(leftNavPage.getNumberOfMenuOptions(), 4,
                 "There should be four menu options in left navigation");
 
+    }
+    @Test(priority = 19, retryAnalyzer = SwagLabsRetry.class)
+    public void verifySpellingOfMenuOptionInLeftNavigationMenu(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.clickOnLoginButton();
+        topNavPage.clickOnCartButton();
+        topNavPage.clickOnHamburger();
+
+        leftNavPage.waitLeftNavMenu();
+
+        List<String> correctSpelledMenu = new ArrayList<>(Arrays.asList("All Items", "About", "Logout", "Reset App State"));
+
+        for (int i = 0; i < leftNavPage.getNumberOfMenuOptions(); i++) {
+            Assert.assertEquals(leftNavPage.getTextFromMenuOptions().get(i), correctSpelledMenu.get(i),
+                    leftNavPage.getTextFromMenuOptions().get(i)+" is not correctly spelled");
+        }
 
     }
+
+
+
 
 
 

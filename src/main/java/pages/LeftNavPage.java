@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,9 +36,19 @@ public class LeftNavPage extends BasicPage {
         return driver.findElements(By.cssSelector(".bm-item-list>a"));
     }
 
+    public List<String>getTextFromMenuOptions(){
+        List<String>menuOptions = new ArrayList<>();
+
+        for (int i = 0; i < getNumberOfMenuOptions(); i++) {
+            menuOptions.add(getMenuOptions().get(i).getText());
+        }
+        return menuOptions;
+    }
+
     public int getNumberOfMenuOptions(){
         return getMenuOptions().size();
     }
+
 
 
 
