@@ -596,6 +596,18 @@ public class SwagLabsTests extends BasicTest{
                 "User is not redirected to checkout page");
     }
 
+    @Test(priority = 39, retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfTwitterButtonIsPresentedInTheCartPage(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.clickOnLoginButton();
+        topNavPage.clickOnCartButton();
+        footerPage.scrollToFooter();
+        footerPage.waitForTwitterIconToBeVisible();
+    }
+
 
 
 
