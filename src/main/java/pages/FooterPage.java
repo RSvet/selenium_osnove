@@ -22,6 +22,11 @@ public class FooterPage extends BasicPage{
         return driver.findElement(By.cssSelector(".social_twitter>a"));
     }
 
+    public WebElement getFacebook(){
+        return driver.findElement(By.cssSelector(".social_facebook>a"));
+    }
+
+
     public void scrollToFooter(){
         new Actions(driver).scrollToElement(getFooter()).perform();
     }
@@ -30,6 +35,12 @@ public class FooterPage extends BasicPage{
         wait
                 .withMessage("Twitter icon is not visible in the cart page")
                 .until(ExpectedConditions.visibilityOf(getTwitter()));
+    }
+
+    public void waitForFacebookIconToBeVisible(){
+        wait
+                .withMessage("Facebook icon is not visible in the cart page")
+                .until(ExpectedConditions.visibilityOf(getFacebook()));
     }
 
 }
