@@ -29,21 +29,6 @@ public class InventoryPage extends BasicPage{
         return elementExists(By.id("remove-sauce-labs-backpack"));
     }
 
-    public boolean checkIfCartBadgeExists(){
-        return elementExists(By.className("shopping_cart_badge"));
-    }
 
-    public WebElement getCartBadge(){
-        if(checkIfCartBadgeExists()){
-            return driver.findElement(By.className("shopping_cart_badge"));
-        }
-        else return null;
-    }
-    public int getNumberOfItemsFromCartBadge(){
-        if(getCartBadge()!=null){
-          return  Integer.parseInt(getCartBadge().getText());
-        }
-        else return 0;
-    }
 
 }

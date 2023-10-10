@@ -46,4 +46,21 @@ public class TopNavPage extends BasicPage {
         return getCartButton().isEnabled();
     }
 
+    public boolean checkIfCartBadgeExists(){
+        return elementExists(By.className("shopping_cart_badge"));
+    }
+
+    public WebElement getCartBadge(){
+        if(checkIfCartBadgeExists()){
+            return driver.findElement(By.className("shopping_cart_badge"));
+        }
+        else return null;
+    }
+    public int getNumberOfItemsFromCartBadge(){
+        if(getCartBadge()!=null){
+            return  Integer.parseInt(getCartBadge().getText());
+        }
+        else return 0;
+    }
+
 }
