@@ -28,9 +28,13 @@ public class LeftNavPage extends BasicPage {
         return driver.findElement(By.linkText("Logout"));
     }
 
+    public WebElement getAllItems(){return driver.findElement(By.linkText("All Items"));}
+
     public void clickLogoutButton(){
         getLogoutLink().click();
     }
+
+    public void clickAllItems(){getAllItems().click();}
 
     public List<WebElement> getMenuOptions(){
         return driver.findElements(By.cssSelector(".bm-item-list>a"));

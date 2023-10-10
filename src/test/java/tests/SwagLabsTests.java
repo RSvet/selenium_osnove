@@ -305,6 +305,27 @@ public class SwagLabsTests extends BasicTest{
 
     }
 
+    @Test(priority = 20, retryAnalyzer = SwagLabsRetry.class)
+    public void verifyAllItemsMenuOptionIsWorking(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.clickOnLoginButton();
+        topNavPage.clickOnCartButton();
+        topNavPage.clickOnHamburger();
+
+        leftNavPage.waitLeftNavMenu();
+
+        leftNavPage.clickAllItems();
+
+        Assert.assertEquals(
+                driver.getCurrentUrl(),
+                baseUrl2 + "inventory.html",
+                "Should be redirected to products page after login.");
+
+    }
+
 
 
 
