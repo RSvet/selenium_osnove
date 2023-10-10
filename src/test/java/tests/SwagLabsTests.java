@@ -183,6 +183,18 @@ public class SwagLabsTests extends BasicTest{
     }
 
 
+    @Test(priority = 12, retryAnalyzer = SwagLabsRetry.class)
+    public void verifyHamburgerButtonIsEnabledOnCartPage(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.clickOnLoginButton();
+        topNavPage.clickOnCartButton();
+        Assert.assertTrue(topNavPage.hamburgerButtonIsEnabled(), "Hamburger button is not enabled");
+    }
+
+
 
 
 
