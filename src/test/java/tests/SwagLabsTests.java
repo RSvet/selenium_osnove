@@ -144,6 +144,20 @@ public class SwagLabsTests extends BasicTest{
                 "Page title should be Swag Labs");
     }
 
+    @Test(priority = 9, retryAnalyzer = SwagLabsRetry.class)
+    public void verifyHeaderTitleOfCartPage(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.clickOnLoginButton();
+        topNavPage.clickOnCartButton();
+        Assert.assertEquals(
+                topNavPage.getTextFromHeaderTitle(),
+                "Swag Labs",
+                "Header title should be Swag Labs");
+    }
+
 
 
 

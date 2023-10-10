@@ -18,10 +18,13 @@ public class TopNavPage extends BasicPage {
         return driver.findElement(By.className("shopping_cart_link"));
     }
 
+    public WebElement getHeaderTitle(){return driver.findElement(By.className("app_logo"));}
+
+    public String getTextFromHeaderTitle(){return getHeaderTitle().getText();}
+
     public void clickOnHamburger(){
         getHamburgerButton().click();
     }
-
 
     public void clickOnCartButton(){
         getCartButton().click();
