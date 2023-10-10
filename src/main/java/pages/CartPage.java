@@ -23,6 +23,10 @@ public class CartPage extends BasicPage{
         return driver.findElement(By.className("inventory_item_name"));
     }
 
+    public WebElement getItemDescriptionElement(){
+        return driver.findElement(By.className("inventory_item_desc"));
+    }
+
     public String getTextFromAddedItemName(){
         return  getItemTitleElement().getText();
     }
@@ -32,5 +36,13 @@ public class CartPage extends BasicPage{
                 .withMessage("Item title is not visible in the cart")
                 .until(ExpectedConditions.visibilityOf(getItemTitleElement()));
     }
+
+    public void waitForItemDescription(){
+        wait
+                .withMessage("Item description is not visible in the cart")
+                .until(ExpectedConditions.visibilityOf(getItemDescriptionElement()));
+    }
+
+
 
 }
