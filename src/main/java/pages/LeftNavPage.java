@@ -20,6 +20,11 @@ public class LeftNavPage extends BasicPage {
                 .withMessage("Left menu did not appear")
                 .until(ExpectedConditions.visibilityOfElementLocated(By.className("bm-item-list")));
     }
+    public void waitXButton(){
+        wait
+                .withMessage("X button is not present")
+                .until(ExpectedConditions.visibilityOf(getXButton()));
+    }
     public boolean doesLogoutButtonExist() {
         return elementExists(By.linkText("Logout"), 0);
     }
@@ -59,6 +64,10 @@ public class LeftNavPage extends BasicPage {
 
     public int getNumberOfMenuOptions(){
         return getMenuOptions().size();
+    }
+
+    public WebElement getXButton(){
+        return driver.findElement(By.id("react-burger-cross-btn"));
     }
 
 

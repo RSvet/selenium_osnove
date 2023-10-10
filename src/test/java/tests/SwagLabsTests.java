@@ -387,6 +387,19 @@ public class SwagLabsTests extends BasicTest{
 
     }
 
+    @Test(priority = 24, retryAnalyzer = SwagLabsRetry.class)
+    public void verifyXButtonIsPresentOnLeftNav(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.clickOnLoginButton();
+        topNavPage.clickOnCartButton();
+        topNavPage.clickOnHamburger();
+        leftNavPage.waitXButton();
+
+    }
+
 
 
 
