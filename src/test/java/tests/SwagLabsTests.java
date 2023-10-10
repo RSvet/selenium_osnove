@@ -99,12 +99,12 @@ public class SwagLabsTests extends BasicTest{
                 "Should be redirected to inventory page after login.");
 
         Assert.assertTrue(inventoryPage.locateSauceLabsItem(), "There is no Sauce Labs Backpack");
-        int numberOfItemsBefore = inventoryPage.getNumberOfItemsFromCartBadge();
+        int numberOfItemsBefore = topNavPage.getNumberOfItemsFromCartBadge();
 
         inventoryPage.clickToAddItemToCart();
         Assert.assertTrue(inventoryPage.checkIfThereIsRemoveButton(), "There is no remove button");
 
-        int numberOfItemsAfter = inventoryPage.getNumberOfItemsFromCartBadge();
+        int numberOfItemsAfter = topNavPage.getNumberOfItemsFromCartBadge();
 
         Assert.assertEquals(numberOfItemsAfter, numberOfItemsBefore+1, "Number of items in the cart did not increase");
 
@@ -231,6 +231,26 @@ public class SwagLabsTests extends BasicTest{
                 driver.getCurrentUrl(),
                 baseUrl2 + "cart.html",
                 "Should be redirected to cart page after login.");
+    }
+
+    @Test(priority = 15, retryAnalyzer = SwagLabsRetry.class)
+    public void verifyNumberOfAddedItemsToCart(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.clickOnLoginButton();
+
+        int numberOfItemsBefore = topNavPage.getNumberOfItemsFromCartBadge();
+        inventoryPage.clickToAddItemToCart();
+        topNavPage.clickOnCartButton();
+        Assert.assertTrue(inventoryPage.checkIfThereIsRemoveButton(), "There is no remove button");
+
+        int numberOfItemsAfter = topNavPage.getNumberOfItemsFromCartBadge();
+
+        Assert.assertEquals(numberOfItemsAfter, numberOfItemsBefore+1, "Number of items in the cart did not increase");
+
+
     }
 
 
