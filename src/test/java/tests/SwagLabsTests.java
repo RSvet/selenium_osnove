@@ -673,6 +673,27 @@ public class SwagLabsTests extends BasicTest{
         driver.switchTo().window(browserTabs.get(0));
     }
 
+    @Test(priority = 44, retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfLinkedinButtonWorksInTheCartPage(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.clickOnLoginButton();
+        topNavPage.clickOnCartButton();
+        footerPage.scrollToFooter();
+        footerPage.waitForFacebookIconToBeVisible();
+        footerPage.clickOnLinkedinIcon();
+
+        List<String> browserTabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(browserTabs .get(1));
+        wait
+                .withMessage("User is not redirected to linkedin page")
+                .until(ExpectedConditions.urlToBe("https://www.linkedin.com/company/sauce-labs/"));
+        driver.close();
+        driver.switchTo().window(browserTabs.get(0));
+    }
+
 
 
 
