@@ -30,4 +30,8 @@ public class TopNavPage extends BasicPage {
         getCartButton().click();
     }
 
+    public boolean doesHamburgerMenuButtonExists(){
+        return elementExists(By.id("react-burger-menu-btn"));
+    }
+
 }
