@@ -652,6 +652,29 @@ public class SwagLabsTests extends BasicTest{
         driver.switchTo().window(browserTabs.get(0));
     }
 
+    @Test(priority = 43, retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfFacebookButtonWorksInTheCartPage(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+        loginPage.clickOnLoginButton();
+        topNavPage.clickOnCartButton();
+        footerPage.scrollToFooter();
+        footerPage.waitForFacebookIconToBeVisible();
+        footerPage.clickOnFacebookIcon();
+
+        List<String> browserTabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(browserTabs .get(1));
+        wait
+                .withMessage("User is not redirected to facebook page")
+                .until(ExpectedConditions.urlToBe("https://www.facebook.com/saucelabs"));
+        driver.close();
+        driver.switchTo().window(browserTabs.get(0));
+    }
+
+
+
 
 
 
